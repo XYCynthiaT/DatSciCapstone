@@ -6,21 +6,23 @@ The first step in analyzing any new data set is figuring out: (a) what data you 
   
 In this capstone we will be applying data science in the area of natural language processing. As a first step toward working on this project, you should familiarize yourself with Natural Language Processing, Text Mining, and the associated tools in R. Here are some resources that may be helpful to you.  
   
-* [Natural language processing Wikipedia page] (https://en.wikipedia.org/wiki/Natural_language_processing)  
-* [Text mining infrastucture in R] (http://www.jstatsoft.org/v25/i05/)  
-* [CRAN Task View: Natural Language Processing] (http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)  
-* [Coursera course on NLP (not in R)] (https://www.coursera.org/course/nlp)   
+* [Natural language processing Wikipedia page](https://en.wikipedia.org/wiki/Natural_language_processing)  
+* [Text mining infrastucture in R](http://www.jstatsoft.org/v25/i05/)  
+* [CRAN Task View: Natural Language Processing](http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)  
+* [Coursera course on NLP (not in R)](https://www.coursera.org/course/nlp)   
+  
 *Dataset*   
   
 This is the training data to get you started that will be the basis for most of the capstone. You must download the data from the Coursera site and not from external websites to start.  
   
-* [Capstone Dataset] (https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)  
+* [Capstone Dataset](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)  
 Your original exploration of the data and modeling steps will be performed on this data set. Later in the capstone, if you find additional data sets that may be useful for building your model you may use them.  
   
 *Tasks to accomplish*  
   
 1. Obtaining the data - Can you download the data and load/manipulate it in R?  
 2. Familiarizing yourself with NLP and text mining - Learn about the basics of natural language processing and how it relates to the data science process you have learned in the Data Science Specialization.  
+  
 *Questions to consider*  
   
 1. What do the data look like?  
@@ -41,13 +43,14 @@ Note that the data contain words of offensive and profane meaning. They are left
   
 1. Tokenization - identifying appropriate tokens such as words, punctuation, and numbers. Writing a function that takes a file as input and returns a tokenized version of it.  
 2. Profanity filtering - removing profanity and other words you do not want to predict.  
+  
 *Tips, tricks, and hints*  
   
-1. *Loading the data in*. This dataset is fairly large. We emphasize that you don't necessarily need to load the entire dataset in to build your algorithms (see point 2 below). At least initially, you might want to use a smaller subset of the data. Reading in chunks or lines using R's readLines or scan functions can be useful. You can also loop over each line of text by embedding readLines within a for/while loop, but this may be slower than reading in large chunks at a time. Reading pieces of the file at a time will require the use of a file connection in R. For example, the following code could be used to read the first few lines of the English Twitter dataset:con <- file("en_US.twitter.txt", "r") readLines(con, 1) ## Read the first line of text readLines(con, 1) ## Read the next line of text readLines(con, 5) ## Read in the next 5 lines of text close(con) ## It's important to close the connection when you are done  
+1. **Loading the data in**. This dataset is fairly large. We emphasize that you don't necessarily need to load the entire dataset in to build your algorithms (see point 2 below). At least initially, you might want to use a smaller subset of the data. Reading in chunks or lines using R's readLines or scan functions can be useful. You can also loop over each line of text by embedding readLines within a for/while loop, but this may be slower than reading in large chunks at a time. Reading pieces of the file at a time will require the use of a file connection in R. For example, the following code could be used to read the first few lines of the English Twitter dataset:con <- file("en_US.twitter.txt", "r") readLines(con, 1) ## Read the first line of text readLines(con, 1) ## Read the next line of text readLines(con, 5) ## Read in the next 5 lines of text close(con) ## It's important to close the connection when you are done  
   
 See the ?connections help page for more information.  
 
-1. *Sampling*. To reiterate, to build models you don't need to load in and use all of the data. Often relatively few randomly selected rows or chunks need to be included to get an accurate approximation to results that would be obtained using all the data. Remember your inference class and how a representative sample can be used to infer facts about a population. You might want to create a separate sub-sample dataset by reading in a random subset of the original data and writing it out to a separate file. That way, you can store the sample and not have to recreate it every time. You can use the rbinom function to "flip a biased coin" to determine whether you sample a line of text or not.  
+1. **Sampling**. To reiterate, to build models you don't need to load in and use all of the data. Often relatively few randomly selected rows or chunks need to be included to get an accurate approximation to results that would be obtained using all the data. Remember your inference class and how a representative sample can be used to infer facts about a population. You might want to create a separate sub-sample dataset by reading in a random subset of the original data and writing it out to a separate file. That way, you can store the sample and not have to recreate it every time. You can use the rbinom function to "flip a biased coin" to determine whether you sample a line of text or not.  
   
 ## Task 2- Exploratory Data Analysis  
 The first step in building a predictive model for text is understanding the distribution and relationship between the words, tokens, and phrases in the text. The goal of this task is to understand the basic relationships you observe in the data and prepare to build your first linguistic models.  
@@ -56,6 +59,7 @@ The first step in building a predictive model for text is understanding the dist
   
 1. Exploratory analysis - perform a thorough exploratory analysis of the data, understanding the distribution of words and relationship between the words in the corpora.  
 2. Understand frequencies of words and word pairs - build figures and tables to understand variation in the frequencies of words and word pairs in the data.  
+  
 *Questions to consider*  
   
 1. Some words are more frequent than others - what are the distributions of word frequencies?  
@@ -69,8 +73,9 @@ The goal here is to build your first simple model for the relationship between w
   
 *Tasks to accomplish*  
     
-1. Build basic n-gram model - using the exploratory analysis you performed, build a basic [n-gram model] (http://en.wikipedia.org/wiki/N-gram) for predicting the next word based on the previous 1, 2, or 3 words.  
+1. Build basic n-gram model - using the exploratory analysis you performed, build a basic [n-gram model](http://en.wikipedia.org/wiki/N-gram) for predicting the next word based on the previous 1, 2, or 3 words.  
 2. Build a model to handle unseen n-grams - in some cases people will want to type a combination of words that does not appear in the corpora. Build a model to handle cases where a particular n-gram isn't observed.  
+  
 *Questions to consider*  
   
 1. How can you efficiently store an n-gram model (think Markov Chains)?  
@@ -78,16 +83,17 @@ The goal here is to build your first simple model for the relationship between w
 3. How many parameters do you need (i.e. how big is n in your n-gram model)?  
 4. Can you think of simple ways to "smooth" the probabilities (think about giving all n-grams a non-zero probability even if they aren't observed in the data) ?  
 5. How do you evaluate whether your model is any good?  
-6. How can you use [backoff models] (http://en.wikipedia.org/wiki/Katz%27s_back-off_model) to estimate the probability of unobserved n-grams?  
+6. How can you use [backoff models](http://en.wikipedia.org/wiki/Katz%27s_back-off_model) to estimate the probability of unobserved n-grams?  
+  
 *Hints, tips, and tricks*  
   
 As you develop your prediction model, two key aspects that you will have to keep in mind are the size and runtime of the algorithm. These are defined as:  
   
-1. *Size*: the amount of memory (physical RAM) required to run the model in R  
-2. *Runtime*: The amount of time the algorithm takes to make a prediction given the acceptable input  
+1. **Size**: the amount of memory (physical RAM) required to run the model in R  
+2. **Runtime**: The amount of time the algorithm takes to make a prediction given the acceptable input  
 Your goal for this prediction model is to minimize both the size and runtime of the model in order to provide a reasonable experience to the user.  
   
-Keep in mind that currently available predictive text models can run on mobile phones, which typically have limited memory and processing power compared to desktop computers. Therefore, you should consider very carefully (1) how much memory is being used by the objects in your workspace; and (2) how much time it is taking to run your model. Ultimately, your model will need to run in a Shiny app that runs on the [shinyapps.io] (https://www.shinyapps.io/) server.  
+Keep in mind that currently available predictive text models can run on mobile phones, which typically have limited memory and processing power compared to desktop computers. Therefore, you should consider very carefully (1) how much memory is being used by the objects in your workspace; and (2) how much time it is taking to run your model. Ultimately, your model will need to run in a Shiny app that runs on the [shinyapps.io](https://www.shinyapps.io/) server.  
   
 *Tips, tricks, and hints*  
   
@@ -105,6 +111,7 @@ The goal of this exercise is to build and evaluate your first predictive model. 
   
 1. Build a predictive model based on the previous data modeling steps - you may combine the models in any way you think is appropriate.  
 2. Evaluate the model for efficiency and accuracy - use timing software to evaluate the computational complexity of your model. Evaluate the model accuracy using different metrics like perplexity, accuracy at the first word, second word, and third word.  
+  
 *Questions to consider*  
   
 1. How does the model perform for different choices of the parameters and size of the model?  
@@ -119,6 +126,7 @@ So far you have used basic models to understand and predict words. In this next 
   
 1. Explore new models and data to improve your predictive model.  
 2. Evaluate your new predictions on both accuracy and efficiency.  
+  
 *Questions to consider*  
   
 1. What are some alternative data sets you could consider using?  
@@ -133,11 +141,13 @@ The goal of this exercise is to create a product to highlight the prediction alg
 *Tasks to accomplish*   
   
 1. Create a data product to show off your prediction algorithm You should create a Shiny app that accepts an n-gram and predicts the next word.  
+  
 *Questions to consider*    
    
 1. What are the most interesting ways you could show off your algorithm?  
 2. Are there any data visualizations you think might be helpful (look at the Swiftkey data dashboard if you have it loaded on your phone)?  
 3. How should you document the use of your data product (separately from how you created it) so that others can rapidly deploy your algorithm?  
+  
 *Tips, tricks, and hints*   
   
 1. Consider the size of the predictive model you have developed. You may have to sacrifice some accuracy to have a fast enough/small enough model to load into Shiny.  
@@ -148,11 +158,13 @@ The goal of this exercise is to "pitch" your data product to your boss or an inv
 *Tasks to accomplish*  
   
 1. Create a slide deck promoting your product. Write 5 slides using RStudio Presenter explaining your product and why it is awesome!
+  
 *Questions to consider*  
   
 1. How can you briefly explain how your predictive model works?  
 2. How can you succinctly quantitatively summarize the performance of your prediction algorithm?  
 3. How can you show the user how the product works?  
+  
 *Tips, tricks, and hints*  
   
 1. The Rstudio presentation information is available here (https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations).  
